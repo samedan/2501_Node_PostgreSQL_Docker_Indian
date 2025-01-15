@@ -3,6 +3,9 @@ import express from "express";
 import cors from "cors";
 import pool from "./config/db.js";
 
+import userRoutes from "./routes/userRoutes.js";
+import errorHandling from "./middlewares/errorHandler.js";
+
 const port = process.env.PORT || 3001;
 
 const app = express();
@@ -12,8 +15,10 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
+app.use("/api", userRoutes);
 
 // Error handling middleware
+app.use(errorHandling);
 
 // Testing Postgres
 app.get("/", async (req, res) => {
