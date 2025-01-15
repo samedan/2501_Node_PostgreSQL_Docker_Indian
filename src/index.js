@@ -5,6 +5,7 @@ import pool from "./config/db.js";
 
 import userRoutes from "./routes/userRoutes.js";
 import errorHandling from "./middlewares/errorHandler.js";
+import createUserTable from "./data/createUserTable.js";
 
 const port = process.env.PORT || 3001;
 
@@ -19,6 +20,9 @@ app.use("/api", userRoutes);
 
 // Error handling middleware
 app.use(errorHandling);
+
+// Create Tabel before starting server
+createUserTable();
 
 // Testing Postgres
 app.get("/", async (req, res) => {
