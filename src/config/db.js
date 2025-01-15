@@ -10,7 +10,9 @@ const pool = new Pool({
 });
 
 pool.on("connect", () => {
-  console.log("Connection poll established with Database");
+  console.log(
+    `Connection poll established with Database: ${process.env.DB_DATABASE}`
+  );
 });
 
 export default pool;
